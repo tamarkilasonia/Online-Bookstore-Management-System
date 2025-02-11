@@ -36,3 +36,11 @@ BookStore: Manages the inventory of books.
 OrderProcessor: Processes orders concurrently with priority.
 Order: Represents user orders, including the book, user, and priority.
 PaymentMethod: Abstract class for different payment methods (Credit Card, PayPal).
+
+
+Technologies 🛠️
+Java 17
+ExecutorService (for concurrency)
+PriorityBlockingQueue (for order priority)
+LinkedList (for purchase history)
+
