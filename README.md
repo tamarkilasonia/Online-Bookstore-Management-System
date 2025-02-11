@@ -10,3 +10,20 @@ User Management: Create a user, buy books, and view purchase history.
 Admin Controls: Add/remove books from the store.
 Order Processing: Orders are processed asynchronously with priority using ExecutorService and PriorityBlockingQueue.
 Payment Methods: Simulate payments via Credit Card and PayPal.
+
+
+Getting Started 🚀
+Prerequisites 🔧
+JDK 17+
+IDE (IntelliJ IDEA/Eclipse)
+Git (optional for cloning)
+Installation 🛠️
+Clone the Repository:
+
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/book-store-app.git
+Run the Application:
+
+Open the project in your IDE and run the Main class.
