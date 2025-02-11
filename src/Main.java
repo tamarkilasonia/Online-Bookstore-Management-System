@@ -37,3 +37,13 @@ public class Main {
                 case 1:
                     bookStore.displayBooks();
                     break;
+
+                case 2:
+                    System.out.print("Enter ISBN of the book you want to buy: ");
+                    String isbn = scanner.nextLine();
+                    Book selectedBook = bookStore.getBook(isbn);
+
+                    if (selectedBook == null) {
+                        System.out.println("Book not found!");
+                        break;
+                    }
