@@ -47,3 +47,21 @@ public class Main {
                         System.out.println("Book not found!");
                         break;
                     }
+
+                    System.out.println("Choose Payment Method:");
+                    System.out.println("1. Credit Card");
+                    System.out.println("2. PayPal");
+                    int paymentChoice = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    PaymentMethod paymentMethod = (paymentChoice == 1) ? new CreditCardPayment() : new PayPalPayment();
+
+                    System.out.print("Enter order priority (1 = Low, 5 = High): ");
+                    int priority = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    Order order = new Order(user, selectedBook, priority, paymentMethod);
+                    orderProcessor.placeOrder(order);
+
+                    user.buyBook(selectedBook);
+                    break;
