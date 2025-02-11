@@ -27,3 +27,12 @@ git clone https://github.com/yourusername/book-store-app.git
 Run the Application:
 
 Open the project in your IDE and run the Main class.
+
+
+Project Structure 🏗️
+User: Represents users who can buy books and view their history.
+Admin: Admin controls for adding/removing books.
+BookStore: Manages the inventory of books.
+OrderProcessor: Processes orders concurrently with priority.
+Order: Represents user orders, including the book, user, and priority.
+PaymentMethod: Abstract class for different payment methods (Credit Card, PayPal).
