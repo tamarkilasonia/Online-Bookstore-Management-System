@@ -15,5 +15,10 @@ class BookStore {
         for (Book book : books.values()) {
             book.displayDetails();
         }
+
+    }
+
+    public Book getBook(String isbn) {
+        return books.get(isbn);
     }
 }
