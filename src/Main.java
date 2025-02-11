@@ -23,3 +23,12 @@ public class Main {
         System.out.print("Enter your name: ");
         String userName = scanner.nextLine();
         User user = new User(userName);
+
+        while (true) {
+            System.out.println("\n1. View Books");
+            System.out.println("2. Buy a Book");
+            System.out.println("3. View Purchase History");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
