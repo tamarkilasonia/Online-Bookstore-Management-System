@@ -32,3 +32,8 @@ public class Main {
             System.out.print("Choose an option: ");
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1:
+                    bookStore.displayBooks();
+                    break;
