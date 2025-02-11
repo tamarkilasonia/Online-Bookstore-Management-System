@@ -65,3 +65,7 @@ public class Main {
 
                     user.buyBook(selectedBook);
                     break;
+
+                case 3:
+                    user.showPurchaseHistory();
+                    break;
