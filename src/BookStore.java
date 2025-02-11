@@ -14,3 +14,9 @@ class BookStore {
             System.out.println("No books available.");
             return;
         }
+        System.out.println("Available Books:");
+        for (Book book : books.values()) {
+            book.displayDetails();
+        }
+    }
+}
