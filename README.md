@@ -7,6 +7,7 @@ Welcome to the Book Store Application! This multi-threaded Java app simulates an
 This project showcases Polymorphism, Concurrency, and Data Structures in Java.
 
 Key Features 🌟
+
 User Management: Create a user, buy books, and view purchase history.
 Admin Controls: Add/remove books from the store.
 Order Processing: Orders are processed asynchronously with priority using ExecutorService and PriorityBlockingQueue.
@@ -14,6 +15,7 @@ Payment Methods: Simulate payments via Credit Card and PayPal.
 
 
 Getting Started 🚀
+
 Prerequisites 🔧
 JDK 17+
 IDE (IntelliJ IDEA/Eclipse)
