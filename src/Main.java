@@ -69,3 +69,16 @@ public class Main {
                 case 3:
                     user.showPurchaseHistory();
                     break;
+
+                case 4:
+                    System.out.println("Shutting down the bookstore...");
+                    orderProcessor.shutdown();
+                    scanner.close();
+                    return;
+
+                default:
+                    System.out.println("Invalid option! Please try again.");
+            }
+        }
+    }
+}
