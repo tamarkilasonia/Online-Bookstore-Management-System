@@ -6,9 +6,11 @@ class BookStore {
     public void addBook(Book book) {
         books.put(book.ISBN, book);
     }
+
     public Book getBook(String isbn) {
         return books.get(isbn);
     }
+
     public void displayBooks() {
         if (books.isEmpty()) {
             System.out.println("No books available.");
@@ -20,3 +22,4 @@ class BookStore {
         }
     }
 }
+
