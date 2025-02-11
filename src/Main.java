@@ -2,24 +2,56 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // Create some books
-        Book book1 = new PaperbackBook("Java for Beginners", "John Doe", "ISBN123", 20.99, 10);
-        Book book2 = new EBook("Advanced Java", "Jane Smith", "ISBN456", 15.49, "www.download-link.com");
-        Book book3 = new PaperbackBook("Data Structures", "Alice Johnson", "ISBN789", 30.99, 5);
-
-        // Store books in a HashMap
         BookStore bookStore = new BookStore();
-        bookStore.addBook(book1);
-        bookStore.addBook(book2);
-        bookStore.addBook(book3);
-
-        // Create an OrderProcessor (Thread Manager)
         OrderProcessor orderProcessor = new OrderProcessor();
-
-        // Scanner for user input
+        DeliveryService deliveryService = new DeliveryService();
         Scanner scanner = new Scanner(System.in);
 
+        // Sample books
+        bookStore.addBook(new PaperbackBook("Java Mastery", "John Doe", "ISBN111", 25.99, 10));
+        bookStore.addBook(new EBook("Python Basics", "Jane Smith", "ISBN222", 15.49, "www.download-py.com"));
+
         System.out.println("Welcome to the Online Bookstore!");
+        System.out.print("Are you (1) a User or (2) an Admin? ");
+        int userType = scanner.nextInt();
+        scanner.nextLine();
+
+        if (userType == 2) {
+            Admin admin = new Admin("admin", "1234");
+            System.out.print("Enter Admin Username: ");
+            String adminUser = scanner.nextLine();
+            System.out.print("Enter Password: ");
+            String adminPass = scanner.nextLine();
+
+            if (!admin.login(adminUser, adminPass)) {
+                System.out.println("❌ Invalid credentials!");
+                return;
+            }
+
+            System.out.println("🔹 Admin Dashboard");
+            System.out.println("1. Add Book");
+            System.out.println("2. Remove Book");
+            int adminChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (adminChoice == 1) {
+                System.out.print("Enter Book Title: ");
+                String title = scanner.nextLine();
+                System.out.print("Enter Author: ");
+                String author = scanner.nextLine();
+                System.out.print("Enter ISBN: ");
+                String isbn = scanner.nextLine();
+                System.out.print("Enter Price: ");
+                double price = scanner.nextDouble();
+                admin.addBook(bookStore, new PaperbackBook(title, author, isbn, price, 5));
+            } else if (adminChoice == 2) {
+                System.out.print("Enter ISBN to Remove: ");
+                String isbn = scanner.nextLine();
+                admin.removeBook(bookStore, isbn);
+            }
+            return;
+        }
+
         System.out.print("Enter your name: ");
         String userName = scanner.nextLine();
         User user = new User(userName);
@@ -27,58 +59,44 @@ public class Main {
         while (true) {
             System.out.println("\n1. View Books");
             System.out.println("2. Buy a Book");
-            System.out.println("3. View Purchase History");
-            System.out.println("4. Exit");
-            System.out.print("Choose an option: ");
+            System.out.println("3. Leave a Review");
+            System.out.println("4. View Reviews");
+            System.out.println("5. Exit");
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
-            switch (choice) {
-                case 1:
-                    bookStore.displayBooks();
-                    break;
+            if (choice == 1) {
+                bookStore.displayBooks();
+            } else if (choice == 2) {
+                System.out.print("Enter ISBN of book: ");
+                String isbn = scanner.nextLine();
+                Book book = bookStore.getBook(isbn);
+                if (book == null) {
+                    System.out.println("❌ Book not found!");
+                    continue;
+                }
 
-                case 2:
-                    System.out.print("Enter ISBN of the book you want to buy: ");
-                    String isbn = scanner.nextLine();
-                    Book selectedBook = bookStore.getBook(isbn);
+                System.out.println("Choose Discount: 1. New User  2. Loyalty");
+                int discountType = scanner.nextInt();
+                scanner.nextLine();
+                DiscountStrategy discount = (discountType == 1) ? new NewUserDiscount() : new LoyaltyDiscount();
+                double finalPrice = discount.applyDiscount(book.price);
 
-                    if (selectedBook == null) {
-                        System.out.println("Book not found!");
-                        break;
-                    }
+                System.out.print("Enter Priority (1-5): ");
+                int priority = scanner.nextInt();
+                scanner.nextLine();
 
-                    System.out.println("Choose Payment Method:");
-                    System.out.println("1. Credit Card");
-                    System.out.println("2. PayPal");
-                    int paymentChoice = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    PaymentMethod paymentMethod = (paymentChoice == 1) ? new CreditCardPayment() : new PayPalPayment();
-
-                    System.out.print("Enter order priority (1 = Low, 5 = High): ");
-                    int priority = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-
-                    Order order = new Order(user, selectedBook, priority, paymentMethod);
-                    orderProcessor.placeOrder(order);
-
-                    user.buyBook(selectedBook);
-                    break;
-
-                case 3:
-                    user.showPurchaseHistory();
-                    break;
-
-                case 4:
-                    System.out.println("Shutting down the bookstore...");
-                    orderProcessor.shutdown();
-                    scanner.close();
-                    return;
-
-                default:
-                    System.out.println("Invalid option! Please try again.");
+                Order order = new Order(user, book, priority, new CreditCardPayment());
+                orderProcessor.placeOrder(order);
+                deliveryService.deliverOrder(order);
+            } else if (choice == 3) {
+                // Review functionality
+            } else if (choice == 5) {
+                break;
             }
         }
+
+        orderProcessor.shutdown();
+        deliveryService.shutdown();
     }
 }
