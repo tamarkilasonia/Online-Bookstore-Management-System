@@ -1,15 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Create some books
+        Book book1 = new PaperbackBook("Java for Beginners", "John Doe", "ISBN123", 20.99, 10);
+        Book book2 = new EBook("Advanced Java", "Jane Smith", "ISBN456", 15.49, "www.download-link.com");
+        Book book3 = new PaperbackBook("Data Structures", "Alice Johnson", "ISBN789", 30.99, 5);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
-    }
-}
+        // Store books in a HashMap
+        BookStore bookStore = new BookStore();
+        bookStore.addBook(book1);
+        bookStore.addBook(book2);
+        bookStore.addBook(book3);
+
+        // Create an OrderProcessor (Thread Manager)
+        OrderProcessor orderProcessor = new OrderProcessor();
+
+        // Scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Online Bookstore!");
+        System.out.print("Enter your name: ");
+        String userName = scanner.nextLine();
+        User user = new User(userName);
