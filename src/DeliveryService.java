@@ -14,7 +14,4 @@ class DeliveryService {
             }
         });
     }
-    public void shutdown() {
-        deliveryExecutor.shutdown();
-    }
-}
+
