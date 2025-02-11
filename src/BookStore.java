@@ -9,3 +9,8 @@ class BookStore {
     public Book getBook(String isbn) {
         return books.get(isbn);
     }
+    public void displayBooks() {
+        if (books.isEmpty()) {
+            System.out.println("No books available.");
+            return;
+        }
