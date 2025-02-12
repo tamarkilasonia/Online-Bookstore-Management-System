@@ -42,7 +42,7 @@ PaymentMethod: Abstract class for different payment methods (Credit Card, PayPal
 
 
 Technologies 🛠️
-Java 17
+Java 
 
 ExecutorService (for concurrency)
 
