@@ -36,6 +36,7 @@ Open the project in your IDE and run the Main class.
 
 
 Project Structure 🏗️
+
 User: Represents users who can buy books and view their history.
 Admin: Admin controls for adding/removing books.
 BookStore: Manages the inventory of books.
