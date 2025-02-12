@@ -17,6 +17,7 @@ Payment Methods: Simulate payments via Credit Card and PayPal.
 Getting Started 🚀
 
 Prerequisites 🔧
+
 JDK 17+
 IDE (IntelliJ IDEA/Eclipse)
 Git (optional for cloning)
