@@ -43,7 +43,6 @@ PaymentMethod: Abstract class for different payment methods (Credit Card, PayPal
 
 Technologies 🛠️
 Java 17
-
 ExecutorService (for concurrency)
 
 PriorityBlockingQueue (for order priority)
